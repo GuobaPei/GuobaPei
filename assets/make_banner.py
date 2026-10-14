@@ -8,6 +8,7 @@ web fonts; outlines look identical on every machine.
 ponytail: macOS system font paths; point the three face() calls elsewhere to
 run it on another OS.
 """
+import math
 import os
 from fontTools.ttLib import TTFont, TTCollection
 from fontTools.pens.svgPathPen import SVGPathPen
@@ -33,7 +34,8 @@ HIRA = face('/System/Library/Fonts/Hiragino Sans GB.ttc', 'Hiragino Sans GB W6')
 NAME = 'JIEYUAN PEI'
 CN = '裴杰远'
 SAY_PRE, SAY_HL, SAY_POST = 'I build ', 'physical intelligence you can trust outside the lab', '.'
-BURST = [('APPLYING', 23), ('2027 FALL', 40), ('MPhil / PhD', 25)]
+BURST = [('INCOMING', 23), ('HKUST (GZ)', 40), ('MPhil · 2027', 25)]
+BURST_DY = (-30, 14, 50)              # baselines relative to the burst centre
 TAGS = [('AI FOR SCIENCE', 'blue'), ('AUTONOMOUS DRIVING', 'red'), ('MULTIMODAL MODELS', 'green')]
 
 THEMES = {
@@ -67,7 +69,6 @@ def outline(font, s, size, x, y, track=0, middle=False):
 
 
 def star(cx, cy, R, r, n=16):
-    import math
     pts = []
     for i in range(2 * n):
         a = math.pi * i / n - math.pi / 2
@@ -82,7 +83,7 @@ def build(t):
     out = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" role="img" '
            f'aria-labelledby="t"><title id="t">Jieyuan Pei (裴杰远) — I build physical '
            f'intelligence you can trust outside the lab. AI for Science, Autonomous Driving, '
-           f'Multimodal Models. Applying for 2027 Fall MPhil / PhD.</title>',
+           f'Multimodal Models. Incoming MPhil student at HKUST (Guangzhou), 2027.</title>',
            # transform-only motion, never opacity, and every first frame fits the panel:
            # some renderers show an <img> SVG frozen at t=0 (seen in a browser pane)
            '<style>'
@@ -137,10 +138,10 @@ def build(t):
                    f'<path d="{outline(IMPACT, label, fs, x + 15, y + 28, 1.5)}" fill="{t["on"]}"/></g>')
         x += w + 18
 
-    # starburst: the 2027 application
+    # starburst: next stop, HKUST (GZ)
     cx, cy = 1004, 206
     lines = ''.join(f'<path d="{outline(IMPACT, s, fz, cx, cy + dy, 1, middle=True)}" fill="{t["on"]}"/>'
-                    for (s, fz), dy in zip(BURST, (-30, 14, 50)))
+                    for (s, fz), dy in zip(BURST, BURST_DY))
     out.append(f'<g transform="rotate(8 {cx} {cy})"><g class="wob">'
                f'<polygon points="{star(cx + 8, cy + 8, 136, 104)}" fill="{t["edge"]}"/>'
                f'<polygon points="{star(cx, cy, 136, 104)}" fill="{t["red"]}" stroke="{t["ink"]}" '
@@ -160,3 +161,8 @@ if __name__ == '__main__':
     bubble_right = 64 + 56 + advance(CHALK, SAY_PRE + SAY_HL + SAY_POST, 25)
     assert name_right < 1004 - 136 and bubble_right < 1004 - 136, (name_right, bubble_right)
     print(f'name ends at x={name_right:.0f}, bubble at x={bubble_right:.0f}, burst starts at x={1004 - 136}')
+    # burst text must stay inside the inner radius (104) of the star
+    for (s, fz), dy in zip(BURST, BURST_DY):
+        reach = math.hypot(advance(IMPACT, s, fz, 1) / 2, max(abs(dy - .75 * fz), abs(dy)))
+        assert reach < 104, (s, round(reach))
+        print(f'burst line {s!r} reaches r={reach:.0f} of 104')

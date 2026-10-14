@@ -1,17 +1,17 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
-  <img src="assets/banner-light.svg" width="100%" alt="Jieyuan Pei (裴杰远): I build physical intelligence you can trust outside the lab. AI for Science, Autonomous Driving, Multimodal Models. Applying for 2027 Fall MPhil / PhD.">
+  <img src="assets/banner-light.svg" width="100%" alt="Jieyuan Pei (裴杰远): I build physical intelligence you can trust outside the lab. AI for Science, Autonomous Driving, Multimodal Models. Incoming MPhil student at HKUST (Guangzhou), 2027.">
 </picture>
 
 <p align="center">
   <a href="https://guobapei.github.io/"><img src="https://img.shields.io/badge/Homepage-guobapei.github.io-ffd23f?style=for-the-badge&labelColor=16161a" alt="Homepage"></a>
   <a href="https://scholar.google.com/citations?user=xAAOO_0AAAAJ&hl=en"><img src="https://img.shields.io/badge/Google_Scholar-Jieyuan_Pei-2f6be0?style=for-the-badge&logo=googlescholar&logoColor=white&labelColor=16161a" alt="Google Scholar"></a>
-  <a href="mailto:peijieyuan@zjut.edu.cn"><img src="https://img.shields.io/badge/Email-peijieyuan%40zjut.edu.cn-e4372e?style=for-the-badge&labelColor=16161a" alt="Email: peijieyuan@zjut.edu.cn"></a>
+  <a href="mailto:pjy@ieee.org"><img src="https://img.shields.io/badge/Email-pjy%40ieee.org-e4372e?style=for-the-badge&labelColor=16161a" alt="Email: pjy@ieee.org"></a>
 </p>
 
+Incoming MPhil student at **HKUST (Guangzhou)** with Prof. Hui Xiong (2027) ·
 B.Eng. in Intelligent Science & Technology at **Zhejiang University of Technology** (expected June 2027) ·
 research intern at **AIR, Tsinghua University** · AI research intern at **Hithink RoyalFlush**.
-Applying for **2027 Fall MPhil / PhD**.
 
 ### 🔬 Research
 
